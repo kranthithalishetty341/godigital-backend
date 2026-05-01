@@ -3,7 +3,10 @@ const cors = require('cors');
 const nodemailer = require('nodemailer');
 
 const app = express();
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+  origin: '*' 
+}));
 app.use(express.json());
 
 app.post('/send-email', async (req, res) => {
@@ -12,12 +15,16 @@ app.post('/send-email', async (req, res) => {
     try {
         let transporter = nodemailer.createTransport({
             service: 'gmail',
+            // auth: {
+            //     user: 'kranthit.1997@gmail.com',
+            //     pass: 'xyjjorfccizyqxpx'
+            // },
             auth: {
-                user: 'kranthit.1997@gmail.com',
-                pass: 'xyjjorfccizyqxpx'
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS
             },
             tls: {
-                rejectUnauthorized: false 
+                rejectUnauthorized: false
             }
         });
 
