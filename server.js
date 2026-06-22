@@ -15,14 +15,14 @@ app.post('/send-email', async (req, res) => {
     try {
         let transporter = nodemailer.createTransport({
             service: 'gmail',
-            // auth: {
-            //     user: 'kranthit.1997@gmail.com',
-            //     pass: 'xyjjorfccizyqxpx'
-            // },
             auth: {
-                user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS
+                user: 'kranthit.1997@gmail.com',
+                pass: 'xyjjorfccizyqxpx'
             },
+            // auth: {
+            //     user: process.env.EMAIL_USER,
+            //     pass: process.env.EMAIL_PASS
+            // },
             tls: {
                 rejectUnauthorized: false
             }
