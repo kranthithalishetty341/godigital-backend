@@ -9,20 +9,24 @@ app.use(cors({
 }));
 app.use(express.json());
 
+app.get('/', (req, res) => {
+    res.send('Backend Running');
+});
+
 app.post('/send-email', async (req, res) => {
     const { name, email, mobile, subject, message } = req.body;
 
     try {
         let transporter = nodemailer.createTransport({
             service: 'gmail',
-            auth: {
-                user: 'kranthit.1997@gmail.com',
-                pass: 'xyjjorfccizyqxpx'
-            },
             // auth: {
-            //     user: process.env.EMAIL_USER,
-            //     pass: process.env.EMAIL_PASS
+            //     user: 'kranthit.1997@gmail.com',
+            //     pass: 'xyjjorfccizyqxpx'
             // },
+            auth: {
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS
+            },
             tls: {
                 rejectUnauthorized: false
             }
@@ -50,4 +54,9 @@ app.post('/send-email', async (req, res) => {
     }
 });
 
-app.listen(3000, () => console.log('Server running on port 3000'));
+// app.listen(3000, () => console.log('Server running on port 3000'));
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
