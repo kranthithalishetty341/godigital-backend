@@ -31,10 +31,17 @@ router.post('/send-email', async (req, res) => {
             message: "Message sent successfully"
         });
     } catch (err) {
-        console.error("Brevo Error:", err.response?.data || err.message);
-        res.status(500).json({
+        // console.error("Brevo Error:", err.response?.data || err.message);
+        // res.status(500).json({
+        //     success: false,
+        //     message: "Failed to send message"
+        // });
+        console.error("FULL ERROR:");
+        console.error(err.response?.data || err.message);
+
+        return res.status(500).json({
             success: false,
-            message: "Failed to send message"
+            error: err.response?.data || err.message
         });
     }
 });
