@@ -14,7 +14,7 @@ const sendEmail = async ({name, email, mobile, subject, message}) =>{
         ],
         subject: `New Contact Message - ${name}`,
         htmlContent: `
-        <h2>New Contact Form Message</h2>
+        <h2>Contact Form Message</h2>
         <p><b>Name:</b>${name}</p>
         <p><b>Email:</b>${email}</p> 
         <p><b>Mobile:</b>${mobile}</p> 
