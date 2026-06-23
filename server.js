@@ -20,6 +20,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/env-check', (req, res) => {
+    console.log("BREVO_API_KEY:", process.env.BREVO_API_KEY)
     res.json({
         apiKeyExists: !!process.env.BREVO_API_KEY,
         apiKeyLength: process.env.BREVO_API_KEY?.length || 0,
