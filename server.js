@@ -15,13 +15,22 @@ app.use(express.json());
 
 app.use('/api', contactRoutes);
 
-app.get('/', (req, res)=>{
+app.get('/', (req, res) => {
     res.send('API running');
+});
+
+app.get('/env-check', (req, res) => {
+    res.json({
+        apiKeyExists: !!process.env.BREVO_API_KEY,
+        apiKeyLength: process.env.BREVO_API_KEY?.length || 0,
+        sender: process.env.SENDER_EMAIL,
+        receiver: process.env.TO_EMAIL
+    });
 });
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, ()=>{
+app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
 
@@ -33,7 +42,7 @@ app.listen(PORT, ()=>{
 // const app = express();
 // // app.use(cors());
 // app.use(cors({
-//   origin: '*' 
+//   origin: '*'
 // }));
 // app.use(express.json());
 
