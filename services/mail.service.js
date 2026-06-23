@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const sendEmail = async ({name, email, message}) =>{
+const sendEmail = async ({name, email, mobile, subject, message}) =>{
     const response = await axios.post(
         'https://api.brevo.com/v3/smtp/email',
         {
@@ -17,6 +17,8 @@ const sendEmail = async ({name, email, message}) =>{
         <h2>New Contact Form Message</h2>
         <p><b>Name:</b>${name}</p>
         <p><b>Email:</b>${email}</p> 
+        <p><b>Mobile:</b>${mobile}</p> 
+        <p><b>Subject:</b>${subject}</p> 
         <p><b>Message:</b>${message}</p>
         `
         },
